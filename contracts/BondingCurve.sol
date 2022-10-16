@@ -14,7 +14,7 @@ contract BondingCurve {
     ) public pure returns (uint256) {
         uint256 price = calculatePrice(totalSupply, slope);
 
-        return depositAmount.div(price);
+        return (depositAmount * (10**8)) / price;
     }
 
     function calculatePrice(uint256 totalSupply, uint32 slope)
@@ -22,7 +22,7 @@ contract BondingCurve {
         pure
         returns (uint256)
     {
-        uint256 temp = totalSupply.mul(totalSupply);
-        return slope.mul(temp);
+        // uint256 temp = totalSupply.mul(totalSupply);
+        return slope.mul(totalSupply);
     }
 }
